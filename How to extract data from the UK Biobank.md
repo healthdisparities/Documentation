@@ -42,11 +42,7 @@ Keep this information in your brain for later.
 1. Leaving the PuTTY window from Step 1 running, open a new PuTTY session.
 2. Load Biowulf (but don't "Open" right away!)
 
-![image.png](attachment:image.png)
-
 3. Go to the Tunnels settings in the SSH tab. There, input the following information in "Source port" and "Destination" (see below), including the port number from your first PuTTY session:
-
-![image.png](attachment:image.png)
 
 4. Click "Add".
 5. Click "Open", then login using your username and password. Next, proceed to Step 3.
