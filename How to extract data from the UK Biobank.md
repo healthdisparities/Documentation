@@ -30,19 +30,11 @@ Goal: use Jupyter Lab on Biowulf.
 1. Connect to NIH VPN
 2. Open PuTTY and connect to Biowulf
 3. Login with username and password
-
-![image.png](attachment:image.png)
-
 4. Allocate an interactive session using the following code:
 > sinteractive --gres=lscratch:5 --mem=200g --tunnel
-
-![image.png](attachment:image.png)
-
 While this is loading, move on to step 2.
 
-Note: The eventual output of this command will say what port to use:
-![image.png](attachment:image.png)
-In this example, the port is 42549.
+Note: The eventual output of this command will say what port to use.
 Keep this information in your brain for later.
 
 #### Step 2. Open new PuTTY window
@@ -81,11 +73,6 @@ When you are done with Jupyter, save your changes in the browser and close both 
 
 Jupyter on Biowulf https://hpc.nih.gov/apps/jupyter.html  
 SSH Tunneling on Biowulf https://hpc.nih.gov/docs/tunneling/ 
-
-<a id='section1.b'></a>
-
-### 1.b. NIMHD server
-Instructions for creating a Jupyter notebook in Dr. Marino-Ramirez's **NIMHD server** forthcoming.
 
 <a id='section2'></a>
 
