@@ -58,13 +58,9 @@ Keep this information in your brain for later.
 2. Use the following code to initiate a Jupyter notebook:
 > jupyter notebook --ip localhost --port $PORT1 --no-browser
 
-- Note: if you get the following error,
-![image.png](attachment:image.png)
-Then you are trying to do this step in the wrong PuTTY window. Go back to the original PuTTY window (the first one you made, in Step 1 of these instructions) and try running the code in Step 3 of these instructions there.
+- Note: if you get an error, you may be trying to do this step in the wrong PuTTY window. Go back to the original PuTTY window (the first one you made, in Step 1 of these instructions) and try running the code in Step 3 of these instructions there.
 
-3. Copy the link given in the output:
-![image.png](attachment:image.png)
-
+3. Copy the link given in the output.
 4. Paste the link into the search bar in your internet browser and push enter to start your Jupyter notebook session. 
 
 When you are done with Jupyter, save your changes in the browser and close both PuTTY windows.
