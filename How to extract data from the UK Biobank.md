@@ -86,30 +86,6 @@ Click on “Data”, located at the top of the page. Then click on the button un
 
 Here you will see six files:
 
-ls -lt
-total 64
-drwxr-xr-x   67 marino  NIH\Domain Users  2144 Sep 23 05:31 docs
-drwxr-xr-x   99 marino  NIH\Domain Users  3168 Sep 23 05:26 lib
-drwxr-xr-x   53 marino  NIH\Domain Users  1696 Sep 23 05:26 include
-drwxr-xr-x  173 marino  NIH\Domain Users  5536 Sep 23 05:26 bin
-drwxr-xr-x   54 marino  NIH\Domain Users  1728 Sep 23 05:26 opt
-drwxr-xr-x   21 marino  NIH\Domain Users   672 Sep 21 07:57 share
-drwxr-xr-x   41 marino  NIH\Domain Users  1312 Sep 21 07:56 Cellar
-drwxr-xr-x    3 marino  NIH\Domain Users    96 Sep 20 22:56 sbin
-drwxr-xr-x    4 marino  NIH\Domain Users   128 Sep 20 22:54 manpages
--rw-r--r--    1 marino  NIH\Domain Users  1751 Sep 20 22:54 Dockerfile
-drwxr-xr-x    4 marino  NIH\Domain Users   128 Sep  7 09:06 Frameworks
--rw-r--r--    1 marino  NIH\Domain Users  8764 Aug 30 11:25 README.md
-drwxr-xr-x    8 marino  NIH\Domain Users   256 Aug 18 12:20 Library
-drwxr-xr-x   10 marino  NIH\Domain Users   320 Aug 16 20:52 etc
-drwxrwxr-x    2 marino  NIH\Domain Users    64 Aug 10 10:58 Caskroom
-drwxr-xr-x    7 marino  NIH\Domain Users   224 Aug  5 21:38 completions
--rw-r--r--    1 marino  NIH\Domain Users   704 Dec 31  2020 SECURITY.md
--rw-r--r--    1 marino  NIH\Domain Users  1334 Dec 31  2020 LICENSE.txt
--rw-r--r--    1 marino  NIH\Domain Users   829 Dec 31  2020 CONTRIBUTING.md
--rw-r--r--    1 marino  NIH\Domain Users   207 Dec 31  2020 CHANGELOG.md
-drwxr-xr-x    3 marino  NIH\Domain Users    96 Dec 31  2020 var
-<pre/>
 
 #### 2. Download programs for data processing
 For each file located under “6 File Handlers”, 
