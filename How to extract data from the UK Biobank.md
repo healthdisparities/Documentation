@@ -86,7 +86,6 @@ Click on “Data”, located at the top of the page. Then click on the button un
 
 Here you will see six files:
 
-<pre>
 ls -lt
 total 64
 drwxr-xr-x   67 marino  NIH\Domain Users  2144 Sep 23 05:31 docs
