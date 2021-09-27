@@ -121,6 +121,7 @@ The MD5 checksum for our data should be xxxxxxxxxxxxxxxxxxxxxxxxxxxx18ce
 
 Note, when finished expect these sizes for the data:
 
+```console
 [teaglewl@biowulf raw_data]$ ls -lh  
  total 58G  
  -rw-r--r--. 1 teaglewl teaglewl  44M Jul 25 07:11 encoding.ukb  
@@ -139,6 +140,7 @@ Note, when finished expect these sizes for the data:
  -rwxr-xr-x. 1 teaglewl teaglewl 327K Jul 25 07:11 ukblink  
  -rwxr-xr-x. 1 teaglewl teaglewl 1.8M Mar 14  2018 ukbmd5  
  -rwxr-xr-x. 1 teaglewl teaglewl 1.5M Mar 14  2018 ukbunpack
+ ```
 Steps to confirm data is complete forthcoming.
 
 <a id='section3'></a>
