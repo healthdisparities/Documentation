@@ -121,25 +121,24 @@ The MD5 checksum for our data should be xxxxxxxxxxxxxxxxxxxxxxxxxxxx18ce
 
 Note, when finished expect these sizes for the data:
 
-`> [teaglewl@biowulf raw_data]$ ls -lh  
-> total 58G  
-> -rw-r--r--. 1 teaglewl teaglewl  44M Jul 25 07:11 encoding.ukb  
-> -rw-r--r--. 1 teaglewl teaglewl  20K Sep 23 15:40 fields.ukb  
-> -rwxr-xr-x. 1 teaglewl teaglewl 356K Jul 25 07:11 gfetch  
-> -rw-r-----. 1 teaglewl teaglewl 3.4G Sep 22 12:21 my_ukb_data.rda  
-> -rw-r--r--. 1 teaglewl teaglewl 376M Sep 23 11:12 ukb12345.csv  
-> -rw-r--r--. 1 teaglewl teaglewl 4.9G Mar 13  2021 ukb12345.enc  
-> -rw-r-----. 1 teaglewl teaglewl  16G Sep 22 07:38 ukb12345.enc_ukb  
-> -rw-r-----. 1 teaglewl teaglewl  11M Sep 23 17:50 ukb12345.html  
-> -rw-r--r--. 1 teaglewl teaglewl  354 Sep 23 17:50 ukb12345.log  
-> -rw-r-----. 1 teaglewl teaglewl 511K Sep 24 09:41 ukb12345.r  
-> -rw-r--r--. 1 teaglewl teaglewl  34G Sep 23 14:43 ukb12345.tab  
-> -rwxr-xr-x. 1 teaglewl teaglewl 2.0M Mar 14  2018 ukbconv  
-> -rwxr-xr-x. 1 teaglewl teaglewl 335K Jul 25 07:11 ukbfetch  
-> -rwxr-xr-x. 1 teaglewl teaglewl 327K Jul 25 07:11 ukblink  
-> -rwxr-xr-x. 1 teaglewl teaglewl 1.8M Mar 14  2018 ukbmd5  
-> -rwxr-xr-x. 1 teaglewl teaglewl 1.5M Mar 14  2018 ukbunpack  
-`
+`[teaglewl@biowulf raw_data]$ ls -lh  
+ total 58G  
+ -rw-r--r--. 1 teaglewl teaglewl  44M Jul 25 07:11 encoding.ukb  
+ -rw-r--r--. 1 teaglewl teaglewl  20K Sep 23 15:40 fields.ukb  
+ -rwxr-xr-x. 1 teaglewl teaglewl 356K Jul 25 07:11 gfetch  
+ -rw-r-----. 1 teaglewl teaglewl 3.4G Sep 22 12:21 my_ukb_data.rda  
+ -rw-r--r--. 1 teaglewl teaglewl 376M Sep 23 11:12 ukb12345.csv  
+ -rw-r--r--. 1 teaglewl teaglewl 4.9G Mar 13  2021 ukb12345.enc  
+ -rw-r-----. 1 teaglewl teaglewl  16G Sep 22 07:38 ukb12345.enc_ukb  
+ -rw-r-----. 1 teaglewl teaglewl  11M Sep 23 17:50 ukb12345.html  
+ -rw-r--r--. 1 teaglewl teaglewl  354 Sep 23 17:50 ukb12345.log  
+ -rw-r-----. 1 teaglewl teaglewl 511K Sep 24 09:41 ukb12345.r  
+ -rw-r--r--. 1 teaglewl teaglewl  34G Sep 23 14:43 ukb12345.tab  
+ -rwxr-xr-x. 1 teaglewl teaglewl 2.0M Mar 14  2018 ukbconv  
+ -rwxr-xr-x. 1 teaglewl teaglewl 335K Jul 25 07:11 ukbfetch  
+ -rwxr-xr-x. 1 teaglewl teaglewl 327K Jul 25 07:11 ukblink  
+ -rwxr-xr-x. 1 teaglewl teaglewl 1.8M Mar 14  2018 ukbmd5  
+ -rwxr-xr-x. 1 teaglewl teaglewl 1.5M Mar 14  2018 ukbunpack`
 Steps to confirm data is complete forthcoming.
 
 <a id='section3'></a>
