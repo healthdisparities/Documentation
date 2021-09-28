@@ -90,7 +90,7 @@ Here you will see six files:
 #### 2. Download programs for data processing
 For each file located under “6 File Handlers”, 
 * Click the link for your Operating System of choice (for example, we used linux).  
-![image.png](attachment:image.png)
+
 * Get the **wget** code. In the example above, the code is **“wget -nd biobank.ndph.ox.ac.uk/ukb/util/ukbconv**”.  
 * In the server/directory you want to download the data to, paste and run the code.  
 * Once it is done, run the following code:  
@@ -101,10 +101,10 @@ Replace [file name] with the name of the file you are downloading. In this examp
 > ls -l  
 
 Next, click on “1 Miscellaneous Utility”: 
-![image.png](attachment:image.png)  
+ 
 
 Click on the “all” link under Operating System and download the encoding.ukb file:
-![image-2.png](attachment:image-2.png)
+
 
 #### 3. Download UKB datasets
 Finally, click on the “3 Datasets” tab and follow the instructions on screen to download the data.
@@ -150,31 +150,31 @@ For more information as well as alternative ways to search for variables, catego
 
 ***
 Beginning at the UK Biobank website, https://www.ukbiobank.ac.uk/, click on “Data Showcase”.
-![image.png](attachment:image.png)  
+
 ***
 
 Next, click on “Browse”:
-![image-2.png](attachment:image-2.png)  
+
 ***
 
 Here you find a series of folders with the data structure:
-![image-3.png](attachment:image-3.png)  
+
 ***
 
 Click on the + buttons to expand the folders.
-![image-4.png](attachment:image-4.png)  
+  
 ***
 
 You can also click on the folder names themselves, and you will be navigated directly to the contents of that folder, such as when I click on “Population characteristics”:
-![image-5.png](attachment:image-5.png)  
+
 ***
 
 From either location, keep clicking until you find what you’re interested in. For example, under Population characteristics, I selected Baseline characteristics, then Indices of Multiple Deprivation. This is the furthest level before reaching the data fields, and clicking here I reach the following page with information about Indices of Multiple Deprivation (under the Description and Notes, as shown), the data fields themselves (see 25 Data-Fields), etc.
-![image-6.png](attachment:image-6.png)  
+
 ***
 
 Clicking on “# Data-Fields”, I find the variables found in the UK Biobank under that categorization. 
-![image-7.png](attachment:image-7.png)  
+
 ***
 
 You can also create a data dictionary when you download your data (see documentation on downloading data from the UK Biobank for more information).
