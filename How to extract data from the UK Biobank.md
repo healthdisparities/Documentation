@@ -10,13 +10,11 @@
 4. [Create dataset from UKB](#section4)  
     4.a. [Prepare environment](#section4)  
     4.b. [Load UK Biobank raw dataset](#section4.b)  
-        4.b.i. Making a dataset   
-        4.b.ii. Load the memory-efficient dataset  
     4.c. [Make a key](#section4.c)  
     4.d. [Extract data from UK Biobank raw dataset](#section4.d)  
-        4.c.i. Demographics data
-        4.c.ii. ICD-10 codes/Elixhauser Comorbidity Index  
-        4.c.iii. Mental health variables  
+	- [Demographics data](#section4.d.i)
+	- [ICD-10 codes/Elixhauser Comorbidity Index](#section4.d.ii)  
+	- [Mental health variables](#section4.d.iii)  
 
 <a id='section1'></a>
 
@@ -31,30 +29,34 @@ Goal: use Jupyter Lab on Biowulf.
 2. Open PuTTY and connect to Biowulf
 3. Login with username and password
 4. Allocate an interactive session using the following code:
-> sinteractive --gres=lscratch:5 --mem=200g --tunnel
+```
+sinteractive --gres=lscratch:5 --mem=200g --tunnel
+```
 While this is loading, move on to step 2.
 
-Note: The eventual output of this command will say what port to use.
-Keep this information in your brain for later.
+Note: The eventual output of this command will say what port to use. For example, the output ```ssh -L 42549:localhost:42549 username@biowulf.nih.gov``` indicates that the port number is 42549. Keep this information in your brain for later.
 
 #### Step 2. Open new PuTTY window
 
 1. Leaving the PuTTY window from Step 1 running, open a new PuTTY session.
 2. Load Biowulf (but don't "Open" right away!)
-
-3. Go to the Tunnels settings in the SSH tab. There, input the following information in "Source port" and "Destination" (see below), including the port number from your first PuTTY session:
-
+3. In the menu on the left side of the PuTTY window, go to the "Tunnels" settings in the "SSH" tab. There, you will see a textbox labeled **Source port** and a textbox labeled **Destination**. Input the following information, replacing the port number with the number generated from your first PuTTY session:
+	- Source port: ```42549```
+	- Destination: ```localhost:42549```
 4. Click "Add".
 5. Click "Open", then login using your username and password. Next, proceed to Step 3.
 
 #### Step 3. Initiate Jupyter notebook
 
 1. In the first PuTTY window (the one created during Step 1), start a Jupyter instance using the following code:
-> module load jupyter  
+```
+module load jupyter
+```
 2. Use the following code to initiate a Jupyter notebook:
-> jupyter notebook --ip localhost --port $PORT1 --no-browser
-
-- Note: if you get an error, you may be trying to do this step in the wrong PuTTY window. Go back to the original PuTTY window (the first one you made, in Step 1 of these instructions) and try running the code in Step 3 of these instructions there.
+```
+jupyter notebook --ip localhost --port $PORT1 --no-browser
+```
+Note: if you get the error ```jupyter-notebook: error: argument --port: expected one argument```, you may be trying to do this step in the wrong PuTTY window. Go back to the original PuTTY window (the first one you made, from Step 1 of these instructions) and try running the code in Step 3 of these instructions there.
 
 3. Copy the link given in the output.
 4. Paste the link into the search bar in your internet browser and push enter to start your Jupyter notebook session. 
@@ -78,43 +80,35 @@ Likewise, prepare to save the data in a directory that has enough disc space ava
 
 
 #### 1. Navigate to UK Biobank data download page
-To download UKB data from https://www.ukbiobank.ac.uk/, click the menu button on the top right of the screen. From there, click “Researcher log in” and follow the instructions to log in using your UKB credentials.  
-
-In the menu on the left side of the screen, click on “Projects”. Then, click the “View/Update” button. This will navigate you to a page with your application details, with the Application ID at the top of the page.  
-
-Click on “Data”, located at the top of the page. Then click on the button under “Data refresh or download” (Go to Showcase to refresh or download data).  
+- To download UKB data from https://www.ukbiobank.ac.uk/, click the menu button on the top right of the screen. From there, click “Researcher log in” and follow the instructions to log in using your UKB credentials.  
+- In the menu on the left side of the screen, click on “Projects”. Then, click the “View/Update” button. This will navigate you to a page with your application details, with the Application ID at the top of the page.  
+- Click on “Data”, located at the top of the page. Then click on the button under “Data refresh or download” (Go to Showcase to refresh or download data).  
 
 Here you will see six files:
-
+![image](https://user-images.githubusercontent.com/60749131/135088344-88bd3f6d-d828-4c28-94f1-6d94221d79e9.png)
 
 #### 2. Download programs for data processing
-For each file located under “6 File Handlers”, 
-* Click the link for your Operating System of choice (for example, we used linux).  
+- For each file located under “6 File Handlers”, 
+	- Click the link for your Operating System of choice (for example, we used linux).  
+![image](https://user-images.githubusercontent.com/60749131/135088738-e2daac45-67fd-4261-9183-10bda3b956b5.png)
+	- Copy the "wget" code. In the example above, the code is ```wget -nd biobank.ndph.ox.ac.uk/ukb/util/ukbconv```.  
+	- In the server/directory you want to download the data to in your PuTTY/terminal window, paste and run the code.  
+	- Once it is done, run ```chmod 755 [file name]```, replacing [file name] with the name of the file you are downloading. In this example, the file name is “ukbconv” so you would type ```chmod 755 ukbconv```.
+	- Run ```ls -l``` to confirm that the file is now executable (aka turned into green text in your terminal).
 
-* Get the **wget** code. In the example above, the code is **“wget -nd biobank.ndph.ox.ac.uk/ukb/util/ukbconv**”.  
-* In the server/directory you want to download the data to, paste and run the code.  
-* Once it is done, run the following code:  
-> chmod 755 [file name]  
-
-Replace [file name] with the name of the file you are downloading. In this example, the file name is “ukbconv”.  
-* Then run the following code to make sure the file is now executable (aka turned into green text in your terminal):
-> ls -l  
-
-Next, click on “1 Miscellaneous Utility”: 
- 
-
-Click on the “all” link under Operating System and download the encoding.ukb file:
-
+- Next, click on “1 Miscellaneous Utility”: 
+![image](https://user-images.githubusercontent.com/60749131/135089673-c050dec3-0e81-43a7-96f8-f8e7a0ec42dc.png) 
+- Click on the “all” link under Operating System and download the encoding.ukb file:
+![image](https://user-images.githubusercontent.com/60749131/135090588-8e556adc-95ed-43b2-a6cf-b2b42a589b38.png)
 
 #### 3. Download UKB datasets
-Finally, click on the “3 Datasets” tab and follow the instructions on screen to download the data.
+- Finally, click on the “3 Datasets” tab and follow the instructions on screen to download the data.
 
 #### 4. Process UKB datasets
-After you have downloaded each of the files, follow the instructions located at https://biobank.ctsu.ox.ac.uk/~bbdatan/Accessing_UKB_data_v2.3.pdf, beginning with section 2.4.
+- After you have downloaded each of the files, follow the instructions located at https://biobank.ctsu.ox.ac.uk/~bbdatan/Accessing_UKB_data_v2.3.pdf, beginning with section 2.4.
 
 #### Notes and checks:
-Note: if the programs are not in your path (downloaded into a “bin” directory), you will have to execute them from your directory. To do so, add “./” before each command through sections 2.6.3 in order to execute the line from the current directory. For example, when decrypting the encrypted file “ukb12345.enc” (replacing 12345 with your application number) in step 2.4, type  
-> ./ukbmd5 ukb12345.enc
+Note: if the programs are not in your path (downloaded into a “bin” directory), you will have to execute them from your directory. To do so, add “./” before each command through sections 2.6.3 in order to execute the line from the current directory. For example, when decrypting the encrypted file “ukb12345.enc” (replacing 12345 with your application number) in step 2.4, type ```./ukbmd5 ukb12345.enc```
 
 The MD5 checksum for our data should be xxxxxxxxxxxxxxxxxxxxxxxxxxxx18ce  
 (refer to email for the first 28 digits)
@@ -149,35 +143,21 @@ Steps to confirm data is complete forthcoming.
 For more information as well as alternative ways to search for variables, categories, and data, see https://biobank.ndph.ox.ac.uk/ukb/ukb/exinfo/ShowcaseUserGuide.pdf
 
 ***
-Beginning at the UK Biobank website, https://www.ukbiobank.ac.uk/, click on “Data Showcase”.
-
-***
-
-Next, click on “Browse”:
-
-***
-
-Here you find a series of folders with the data structure:
-
-***
-
-Click on the + buttons to expand the folders.
-  
-***
-
-You can also click on the folder names themselves, and you will be navigated directly to the contents of that folder, such as when I click on “Population characteristics”:
-
-***
-
-From either location, keep clicking until you find what you’re interested in. For example, under Population characteristics, I selected Baseline characteristics, then Indices of Multiple Deprivation. This is the furthest level before reaching the data fields, and clicking here I reach the following page with information about Indices of Multiple Deprivation (under the Description and Notes, as shown), the data fields themselves (see 25 Data-Fields), etc.
-
-***
-
-Clicking on “# Data-Fields”, I find the variables found in the UK Biobank under that categorization. 
-
-***
-
-You can also create a data dictionary when you download your data (see documentation on downloading data from the UK Biobank for more information).
+- Beginning at the UK Biobank website, https://www.ukbiobank.ac.uk/, click on “Data Showcase”.
+![image](https://user-images.githubusercontent.com/60749131/135091417-4204385d-64fd-4549-934b-99f31616f560.png)
+- Next, click on “Browse”:
+![image](https://user-images.githubusercontent.com/60749131/135091473-f3e1692a-3a6b-4dfa-b9cf-261427267162.png)
+- Here you find a series of folders with the data structure:
+![image](https://user-images.githubusercontent.com/60749131/135091532-f91058f9-4b7f-4aa6-9c13-846b31c1dfdf.png)
+- Click on the + buttons to expand the folders.
+![image](https://user-images.githubusercontent.com/60749131/135091595-1f9a51fe-c832-4982-9f35-b0396b24c997.png)
+- You can also click on the folder names themselves, and you will be navigated directly to the contents of that folder, such as when I click on “Population characteristics”:
+![image](https://user-images.githubusercontent.com/60749131/135091661-1cbe1f4f-a3bb-4263-87d6-8070b366bdad.png) 
+- From either location, keep clicking until you find what you’re interested in. For example, under Population characteristics, I selected Baseline characteristics, then Indices of Multiple Deprivation. This is the furthest level before reaching the data fields, and clicking here I reach the following page with information about Indices of Multiple Deprivation (under the Description and Notes, as shown), the data fields themselves (see 25 Data-Fields), etc.
+![image](https://user-images.githubusercontent.com/60749131/135091728-1f6c9f74-2604-4cf4-9338-1f7c12ccfd12.png)
+- Clicking on “# Data-Fields”, I find the variables found in the UK Biobank under that categorization. 
+![image](https://user-images.githubusercontent.com/60749131/135093373-452e785c-eaf3-4816-9234-4315a374f429.png)
+- You can also create a data dictionary when you download your data (see documentation on downloading data from the UK Biobank for more information).
 
 <a id='section4'></a>
 
@@ -201,19 +181,6 @@ install.packages(c('comorbidity',
                    'readr',
                    'data.table'))
 ```
-
-    Installing packages into ‘/spin1/home/linux/teaglewl/R/4.0/library’
-    (as ‘lib’ is unspecified)
-    
-    Warning message in install.packages(c("comorbidity", "ukbtools", "tidyverse", "tibble", :
-    “installation of package ‘tibble’ had non-zero exit status”
-    Warning message in install.packages(c("comorbidity", "ukbtools", "tidyverse", "tibble", :
-    “installation of package ‘data.table’ had non-zero exit status”
-    Warning message in install.packages(c("comorbidity", "ukbtools", "tidyverse", "tibble", :
-    “installation of package ‘dplyr’ had non-zero exit status”
-    Warning message in install.packages(c("comorbidity", "ukbtools", "tidyverse", "tibble", :
-    “installation of package ‘readr’ had non-zero exit status”
-
 
 
 ```R
@@ -251,13 +218,6 @@ Otherwise, proceed with the code in section 4.b.ii.
 # Returns a dataframe with usable column names
 my_ukb_data <- ukb_df("ukb45856", path = "/data/teaglewl/ukbiobank/raw_data") # Replace "ukb45856" with the equivalent name for your UKB data
 ```
-
-    Warning message:
-    “`data_frame()` was deprecated in tibble 1.1.0.
-    Please use `tibble()` instead.
-    [90mThis warning is displayed once every 8 hours.[39m
-    [90mCall `lifecycle::last_warnings()` to see where this warning was generated.[39m”
-
 
 
 ```R
@@ -328,7 +288,7 @@ UKB Primary Demographics can be found here: https://biobank.ctsu.ox.ac.uk/crysta
 
 ###### Select fields of interest
 
-![image.png](attachment:image.png)
+![image](https://user-images.githubusercontent.com/60749131/135094326-35621381-a19a-4509-ac6c-c040a3d9de13.png)
 
 ###### Create key
 
@@ -339,15 +299,7 @@ demographics_vars_showcase <- c("eid", "31", "21003", "34", "52", "54", "53", "2
 demographics_vars_showcase
 ```
 
-
-<style>
-.list-inline {list-style: none; margin:0; padding: 0}
-.list-inline>li {display: inline-block}
-.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
-</style>
 <ol class=list-inline><li>'eid'</li><li>'31'</li><li>'21003'</li><li>'34'</li><li>'52'</li><li>'54'</li><li>'53'</li><li>'21000'</li><li>'189'</li></ol>
-
-
 
 
 ```R
@@ -371,15 +323,7 @@ unique(demographics_vars_key$field.showcase) # Confirm values match selected val
 demographics_vars_key
 ```
 
-
-<style>
-.list-inline {list-style: none; margin:0; padding: 0}
-.list-inline>li {display: inline-block}
-.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
-</style>
 <ol class=list-inline><li>'eid'</li><li>'31'</li><li>'34'</li><li>'52'</li><li>'53'</li><li>'54'</li><li>'189'</li><li>'21000'</li><li>'21003'</li></ol>
-
-
 
 
 <table class="dataframe">
@@ -467,13 +411,6 @@ geom_histogram(stat = "count") +
 theme_classic() +
 theme(axis.text.x = element_text(angle = 90))
 ```
-
-    Warning message:
-    “Ignoring unknown parameters: binwidth, bins, pad”
-
-
-
-![png](output_75_1.png)
 
 
 <a id='section4.d.ii'></a>
@@ -584,7 +521,7 @@ write.table(elixhauser,
 
 First, navigate to the UK Biobank data showcase as described in part 3 ("Find variables of interest"). Click on Browse data.
 
-![image.png](attachment:image.png)
+![image](https://user-images.githubusercontent.com/60749131/135095440-22aaf218-7509-49b9-9c89-2eae94269763.png)
 
 For this demonstration, I selected the following variables:
 * Duration of worst depression
@@ -592,11 +529,14 @@ For this demonstration, I selected the following variables:
 * Substances taken for depression
 
 These variables were found in **Online follow-up** --> **Mental health** --> **Depression**
-![image.png](attachment:image.png)
+
+![image](https://user-images.githubusercontent.com/60749131/135095560-89e6eb84-5f04-4b80-a908-4ba38503f40c.png)
 
 In the following screenshot, numbers refer to the variable Field ID and text is the variable Description. You can find this by clicking on the "Depression" category from the previous page.
-![image.png](attachment:image.png)
 
+![image](https://user-images.githubusercontent.com/60749131/135095636-c4483a62-7788-41a7-9f63-6d779a4ef7c3.png)
+
+*****
 ###### Create key
 
 
@@ -607,11 +547,6 @@ depression_vars_showcase
 ```
 
 
-<style>
-.list-inline {list-style: none; margin:0; padding: 0}
-.list-inline>li {display: inline-block}
-.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
-</style>
 <ol class=list-inline><li>'eid'</li><li>'20438'</li><li>'20510'</li><li>'20546'</li></ol>
 
 
@@ -638,11 +573,6 @@ depression_vars_key
 ```
 
 
-<style>
-.list-inline {list-style: none; margin:0; padding: 0}
-.list-inline>li {display: inline-block}
-.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
-</style>
 <ol class=list-inline><li>'eid'</li><li>'20438'</li><li>'20510'</li><li>'20546'</li></ol>
 
 
@@ -665,7 +595,7 @@ depression_vars_key
 </table>
 
 
-
+*****
 ###### Create mental health - depression dataset
 
 
@@ -715,10 +645,6 @@ melted_data <- reshape2::melt(depression_data, id.vars = 'eid') # More info abou
 head(melted_data)
 ```
 
-    Warning message:
-    “attributes are not identical across measure variables; they will be dropped”
-
-
 
 <table class="dataframe">
 <caption>A data.frame: 6 × 3</caption>
@@ -737,7 +663,7 @@ head(melted_data)
 </table>
 
 
-
+*****
 ### Misc
 
 Note: Based on this video, it also looks like there is a program for intuitively creating cohorts similar to the All of Us project: https://www.youtube.com/watch?v=mNRR7yNAg7s&ab_channel=DNAnexus
