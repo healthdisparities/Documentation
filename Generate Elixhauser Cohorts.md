@@ -18,6 +18,7 @@ The following code only needs to be run once.
 - Create cohort with comorbidity categories of interest (example: alcohol-related disorders and depression)  
 
 **6. Save Elixhauser Comorbidity Index cohorts**  
+- Cohort with alcohol and depression comorbidity categories  
 
 ## Prepare environment
 
