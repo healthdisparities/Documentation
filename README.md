@@ -7,4 +7,4 @@ Documentation for various processes in Dr. Marino-Ramirez's NIMHD lab.
 ## Generating datasets  
 1. [Create demographics dataset](https://github.com/healthdisparities/Documentation/blob/main/Create%20demographics%20dataset.md)  
 2. [Generate PheCode cohorts]()  
-3. [Generate Elixhauser cohorts](https://github.com/healthdisparities/Documentation/blob/main/Generate%20Elixhauser%20Cohorts.md)  
+3. [Generate Elixhauser Comorbidity Index cohorts](https://github.com/healthdisparities/Documentation/blob/main/Generate%20Elixhauser%20Cohorts.md)  
