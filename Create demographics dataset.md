@@ -79,9 +79,8 @@ head(demographics_key, 2)
 ## Create and format demographics datasets
 
 ```{r create}
-# Create demographics datasets
+# Create demographics dataset
 demographics_data <- select(my_ukb_data, matches(demographics_key$col.name))
-melted_demographics_data <- reshape2::melt(demographics_data, id.vars = 'eid') # More info about warning message here: https://stackoverflow.com/questions/25688897/reshape2-melt-warning-message
 ```
 
 ```{r format}
@@ -126,6 +125,11 @@ demographics_data$top_ethnicity[demographics_data$ethnicity == 'Black or Black B
                        demographics_data$ethnicity == 'Any other Black background'] = 'Black'
 demographics_data$top_ethnicity[demographics_data$ethnicity == 'Chinese'] = 'Chinese'
 demographics_data$top_ethnicity[demographics_data$ethnicity == 'Other ethnic group'] = 'Other'
+```
+
+```{r create2}
+# Create melted demographics dataset
+melted_demographics_data <- reshape2::melt(demographics_data, id.vars = 'eid') # More info about warning message here: https://stackoverflow.com/questions/25688897/reshape2-melt-warning-message
 ```
 
 ## Save UKB datasets
