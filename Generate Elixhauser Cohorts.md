@@ -12,7 +12,7 @@ The following code only needs to be run once.
 - ICD-10 codes  
 
 **4. Create and save UKB datasets**  
-- Elixhauser Comorbidity Index info  
+- Elixhauser Comorbidity Index dataset  
 
 ## Prepare environment
 
