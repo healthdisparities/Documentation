@@ -14,6 +14,11 @@ The following code only needs to be run once.
 **4. Create and save UKB datasets**  
 - Elixhauser Comorbidity Index dataset  
 
+**5. Create Elixhauser Comorbidity Index cohorts**  
+- Create cohort with comorbidity categories of interest (example: alcohol-related disorders and depression)  
+
+**6. Save Elixhauser Comorbidity Index cohorts**  
+
 ## Prepare environment
 
 ```{r prep}
@@ -101,4 +106,30 @@ write.table(melted_elixhauser_data,
             sep = "\t", 
             quote = FALSE, 
             row.names = FALSE) 
+```
+
+## Create Elixhauser Comorbidity Index cohort
+
+```{r create_cohort}
+# Create ECI alcohol and depression comorbidity categories
+select_elixhauser_data <- elixhauser_data[c('eid', 'alcohol', 'depre')]
+
+select_elixhauser_data$elix_condition[select_elixhauser_data$alcohol == '1' & select_elixhauser_data$depre == '1'] = 'both'
+select_elixhauser_data$elix_condition[select_elixhauser_data$alcohol == '1' & select_elixhauser_data$depre == '0'] = 'alcohol'
+select_elixhauser_data$elix_condition[select_elixhauser_data$alcohol == '0' & select_elixhauser_data$depre == '1'] = 'depre'
+select_elixhauser_data$elix_condition[select_elixhauser_data$alcohol == '0' & select_elixhauser_data$depre == '0'] = 'undiagnosed'
+
+select_elixhauser_data <- select_elixhauser_data[c('eid', 'elix_condition')]
+
+head(select_elixhauser_data)
+```
+
+## Save Elixhauser Comorbidity Index cohort
+
+```{r save_cohort}
+write.table(select_elixhauser_data, 
+            file = "/data/teaglewl/ukbiobank/outputs_data/elixhauser-cohort.txt", 
+            sep = "\t", 
+            quote = FALSE, 
+            row.names = FALSE)
 ```
