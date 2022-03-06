@@ -23,7 +23,7 @@
 
 ## Create an interactive session
 
-1. You can't do much in the login node, so the first thing to do when you log in to Biowulf is to create an interactive session. The most basic version of this is to type ```sinteractive``` and press enter. This should take a few minutes to connect.  
+1. You can't do much in the login node, so the first thing to do when you log in to Biowulf is to create an interactive session. The basic version of this is to type ```sinteractive``` and press enter. Other settings can be added for [more specific use cases](https://hpc.nih.gov/docs/userguide.html). This should take a few minutes to connect.  
 2. When your nodes have been allocated, you should see ```[<your NIH username>@cn#### ~]$``` at the bottom of the window.  
 
 For more information on creating interactive sessions, go to <https://hpc.nih.gov/docs/userguide.html> or watch  <https://www.youtube.com/watch?v=HuWf5-SIIMk&ab_channel=NIH_HPC>.  
