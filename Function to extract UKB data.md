@@ -2,7 +2,8 @@
 
 #### Created by: Whitney Teagle 
 
-# Pre-requisites
+# Pre-requisites  
+Run this before using the function. The pre-requisite code only needs to be run/loaded once per session.
 
 ### Load UKB raw dataset
 ```R
