@@ -15,4 +15,4 @@ Documentation for various processes in Dr. Marino-Ramirez's NIMHD lab.
 3. [Generate Elixhauser Comorbidity Index cohorts](https://github.com/healthdisparities/Documentation/blob/main/Generate%20Elixhauser%20Cohorts.md)  
 
 ## Useful functions
-1. [Quick function to extract data from the UK Biobank]()
+1. [Quick function to extract data from the UK Biobank](https://github.com/healthdisparities/Documentation/blob/main/Function%20to%20extract%20UKB%20data.md)
