@@ -3,143 +3,19 @@
 #### Created by: Whitney Teagle
 
 #### Contents
-1. [Create a Jupyter notebook](#section1)  
-    1.a. [Biowulf](#section1)
-2. [Download data from UKB](#section2)  
-3. [Find variables of interest](#section3)  
-4. [Create dataset from UKB](#section4)  
-    4.a. [Prepare environment](#section4)  
-    4.b. [Load UK Biobank raw dataset](#section4.b)  
-    4.c. [Make a key](#section4.c)  
-    4.d. [Extract data from UK Biobank raw dataset](#section4.d)  
+1. [Find variables of interest](#section3)  
+2. [Create dataset from UKB](#section4)  
+    2.a. [Prepare environment](#section4)  
+    2.b. [Load UK Biobank raw dataset](#section4.b)  
+    2.c. [Make a key](#section4.c)  
+    2.d. [Extract data from UK Biobank raw dataset](#section4.d)  
 	- [Demographics data](#section4.d.i)
 	- [ICD-10 codes/Elixhauser Comorbidity Index](#section4.d.ii)  
 	- [Mental health variables](#section4.d.iii)  
 
-<a id='section1'></a>
-
-## 1. Create a Jupyter notebook
-
-### 1.a. Biowulf
-Goal: use Jupyter Lab on Biowulf.
-
-#### Step 1. Allocate an interactive session in Biowulf
-
-1. Connect to NIH VPN
-2. Open PuTTY and connect to Biowulf
-3. Login with username and password
-4. Allocate an interactive session using the following code:
-```
-sinteractive --gres=lscratch:5 --mem=200g --tunnel
-```
-While this is loading, move on to step 2.
-
-Note: The eventual output of this command will say what port to use. For example, the output ```ssh -L 42549:localhost:42549 username@biowulf.nih.gov``` indicates that the port number is 42549. Keep this information in your brain for later.
-
-#### Step 2. Open new PuTTY window
-
-1. Leaving the PuTTY window from Step 1 running, open a new PuTTY session.
-2. Load Biowulf (but don't "Open" right away!)
-3. In the menu on the left side of the PuTTY window, go to the "Tunnels" settings in the "SSH" tab. There, you will see a textbox labeled **Source port** and a textbox labeled **Destination**. Input the following information, replacing the port number with the number generated from your first PuTTY session:
-	- Source port: ```42549```
-	- Destination: ```localhost:42549```
-4. Click "Add".
-5. Click "Open", then login using your username and password. Next, proceed to Step 3.
-
-#### Step 3. Initiate Jupyter notebook
-
-1. In the first PuTTY window (the one created during Step 1), start a Jupyter instance using the following code:
-```
-module load jupyter
-```
-2. Use the following code to initiate a Jupyter notebook:
-```
-jupyter notebook --ip localhost --port $PORT1 --no-browser
-```
-Note: if you get the error ```jupyter-notebook: error: argument --port: expected one argument```, you may be trying to do this step in the wrong PuTTY window. Go back to the original PuTTY window (the first one you made, from Step 1 of these instructions) and try running the code in Step 3 of these instructions there.
-
-3. Copy the link given in the output.
-4. Paste the link into the search bar in your internet browser and push enter to start your Jupyter notebook session. 
-
-When you are done with Jupyter, save your changes in the browser and close both PuTTY windows.
-
-**More information:**
-
-Jupyter on Biowulf https://hpc.nih.gov/apps/jupyter.html  
-SSH Tunneling on Biowulf https://hpc.nih.gov/docs/tunneling/ 
-
-<a id='section2'></a>
-
-## 2. Download data from UKB
-
-Note: This data takes up at least 130G memory, so you should request 200G memory for the nodes when requesting an sinteractive session in Biowulf.  
-
-Likewise, prepare to save the data in a directory that has enough disc space available (at least 55G).  
-
-*****  
-
-
-#### 1. Navigate to UK Biobank data download page
-- To download UKB data from https://www.ukbiobank.ac.uk/, click the menu button on the top right of the screen. From there, click “Researcher log in” and follow the instructions to log in using your UKB credentials.  
-- In the menu on the left side of the screen, click on “Projects”. Then, click the “View/Update” button. This will navigate you to a page with your application details, with the Application ID at the top of the page.  
-- Click on “Data”, located at the top of the page. Then click on the button under “Data refresh or download” (Go to Showcase to refresh or download data).  
-
-Here you will see six files:
-![image](https://user-images.githubusercontent.com/60749131/135088344-88bd3f6d-d828-4c28-94f1-6d94221d79e9.png)
-
-#### 2. Download programs for data processing
-- For each file located under “6 File Handlers”, 
-	- Click the link for your Operating System of choice (for example, we used linux).  
-![image](https://user-images.githubusercontent.com/60749131/135088738-e2daac45-67fd-4261-9183-10bda3b956b5.png)
-	- Copy the "wget" code. In the example above, the code is ```wget -nd biobank.ndph.ox.ac.uk/ukb/util/ukbconv```.  
-	- In the server/directory you want to download the data to in your PuTTY/terminal window, paste and run the code.  
-	- Once it is done, run ```chmod 755 [file name]```, replacing [file name] with the name of the file you are downloading. In this example, the file name is “ukbconv” so you would type ```chmod 755 ukbconv```.
-	- Run ```ls -l``` to confirm that the file is now executable (aka turned into green text in your terminal).
-
-- Next, click on “1 Miscellaneous Utility”: 
-![image](https://user-images.githubusercontent.com/60749131/135089673-c050dec3-0e81-43a7-96f8-f8e7a0ec42dc.png) 
-- Click on the “all” link under Operating System and download the encoding.ukb file:
-![image](https://user-images.githubusercontent.com/60749131/135090588-8e556adc-95ed-43b2-a6cf-b2b42a589b38.png)
-
-#### 3. Download UKB datasets
-- Finally, click on the “3 Datasets” tab and follow the instructions on screen to download the data.
-
-#### 4. Process UKB datasets
-- After you have downloaded each of the files, follow the instructions located at https://biobank.ctsu.ox.ac.uk/~bbdatan/Accessing_UKB_data_v2.3.pdf, beginning with section 2.4.
-
-#### Notes and checks:
-Note: if the programs are not in your path (downloaded into a “bin” directory), you will have to execute them from your directory. To do so, add “./” before each command through sections 2.6.3 in order to execute the line from the current directory. For example, when decrypting the encrypted file “ukb12345.enc” (replacing 12345 with your application number) in step 2.4, type ```./ukbmd5 ukb12345.enc```
-
-The MD5 checksum for our data should be xxxxxxxxxxxxxxxxxxxxxxxxxxxx18ce  
-(refer to email for the first 28 digits)
-
-Note, when finished expect these sizes for the data:
-
-```console
-[teaglewl@biowulf raw_data]$ ls -lh  
- total 58G  
- -rw-r--r--. 1 teaglewl teaglewl  44M Jul 25 07:11 encoding.ukb  
- -rw-r--r--. 1 teaglewl teaglewl  20K Sep 23 15:40 fields.ukb  
- -rwxr-xr-x. 1 teaglewl teaglewl 356K Jul 25 07:11 gfetch  
- -rw-r-----. 1 teaglewl teaglewl 3.4G Sep 22 12:21 my_ukb_data.rda  
- -rw-r--r--. 1 teaglewl teaglewl 376M Sep 23 11:12 ukb12345.csv  
- -rw-r--r--. 1 teaglewl teaglewl 4.9G Mar 13  2021 ukb12345.enc  
- -rw-r-----. 1 teaglewl teaglewl  16G Sep 22 07:38 ukb12345.enc_ukb  
- -rw-r-----. 1 teaglewl teaglewl  11M Sep 23 17:50 ukb12345.html  
- -rw-r--r--. 1 teaglewl teaglewl  354 Sep 23 17:50 ukb12345.log  
- -rw-r-----. 1 teaglewl teaglewl 511K Sep 24 09:41 ukb12345.r  
- -rw-r--r--. 1 teaglewl teaglewl  34G Sep 23 14:43 ukb12345.tab  
- -rwxr-xr-x. 1 teaglewl teaglewl 2.0M Mar 14  2018 ukbconv  
- -rwxr-xr-x. 1 teaglewl teaglewl 335K Jul 25 07:11 ukbfetch  
- -rwxr-xr-x. 1 teaglewl teaglewl 327K Jul 25 07:11 ukblink  
- -rwxr-xr-x. 1 teaglewl teaglewl 1.8M Mar 14  2018 ukbmd5  
- -rwxr-xr-x. 1 teaglewl teaglewl 1.5M Mar 14  2018 ukbunpack
- ```
-Steps to confirm data is complete forthcoming.
-
 <a id='section3'></a>
 
-## 3. Find variables of interest
+## 1. Find variables of interest
 For more information as well as alternative ways to search for variables, categories, and data, see https://biobank.ndph.ox.ac.uk/ukb/ukb/exinfo/ShowcaseUserGuide.pdf
 
 ***
@@ -161,9 +37,9 @@ For more information as well as alternative ways to search for variables, catego
 
 <a id='section4'></a>
 
-## 4. Create dataset from UK Biobank
+## 2. Create dataset from UK Biobank
 
-### 4.a. Prepare environment
+### 2.a. Prepare environment
 
 
 ```R
@@ -197,7 +73,7 @@ library(ggplot2)
 
 <a id='section4.b'></a>
 
-### 4.b. Load UK Biobank raw dataset
+### 2.b. Load UK Biobank raw dataset
 Note: this step takes a while and requires lots of computing resources. If the Kernel keeps crashing, start over with more memory (like 100g instead of 10 when you allocate an interactive session in PuTTY).
 
 If you are beginning with .r, .html, and .tab files, then follow the instructions located at https://cran.r-project.org/web/packages/ukbtools/vignettes/explore-ukb-data.html to get started. The following sections ultimately create a memory-efficient .rda file:
@@ -211,7 +87,7 @@ These steps are outlined in section 4.b.i. and only need to be completed once.
 
 Otherwise, proceed with the code in section 4.b.ii.
 
-#### 4.b.i. Making a dataset
+#### 2.b.i. Making a dataset
 
 
 ```R
@@ -225,7 +101,7 @@ my_ukb_data <- ukb_df("ukb45856", path = "/data/teaglewl/ukbiobank/raw_data") # 
 save(my_ukb_data, file = "/data/teaglewl/ukbiobank/raw_data/my_ukb_data.rda")
 ```
 
-#### 4.b.ii. Load the memory-efficient dataset
+#### 2.b.ii. Load the memory-efficient dataset
 
 
 ```R
@@ -235,7 +111,7 @@ load("/data/teaglewl/ukbiobank/raw_data/my_ukb_data.rda") # Replace filepath
 
 <a id='section4.c'></a>
 
-### 4.c. Make a key
+### 2.c. Make a key
 
 The following code creates a data.frame with columns for data field names and descriptions. You will use this to find UKB column names as you create your dataset.
 
@@ -278,12 +154,12 @@ head(my_ukb_key)
 
 <a id='section4.d'></a>
 
-### 4.d. Extract data from UK Biobank raw dataset
+### 2.d. Extract data from UK Biobank raw dataset
 More information, including functions and tools for extracting data from the UK Biobank, can be found at https://cran.r-project.org/web/packages/ukbtools/ukbtools.pdf.
 
 <a id='section4.d.i'></a>
 
-#### 4.d.i. Demographics data
+#### 2.d.i. Demographics data
 UKB Primary Demographics can be found here: https://biobank.ctsu.ox.ac.uk/crystal/label.cgi?id=1001
 
 ###### Select fields of interest
@@ -415,7 +291,7 @@ theme(axis.text.x = element_text(angle = 90))
 
 <a id='section4.d.ii'></a>
 
-#### 4.d.ii. ICD-10 codes/Elixhauser Comorbidity Index
+#### 2.d.ii. ICD-10 codes/Elixhauser Comorbidity Index
 The [comorbidity package](https://cran.r-project.org/web/packages/comorbidity/comorbidity.pdf) was used to generate the Elixhauser Comorbidity Index dataset used in this example.
 
 
@@ -517,7 +393,7 @@ write.table(elixhauser,
 
 <a id='section4.d.iii'></a>
 
-#### 4.d.iii. Mental health variables
+#### 2.d.iii. Mental health variables
 
 First, navigate to the UK Biobank data showcase as described in part 3 ("Find variables of interest"). Click on Browse data.
 
