@@ -16,3 +16,7 @@ Documentation for various processes in Dr. Marino-Ramirez's NIMHD lab.
 
 ## Useful functions
 1. [Quick function to extract data from the UK Biobank](https://github.com/healthdisparities/Documentation/blob/main/Function%20to%20extract%20UKB%20data.md)
+
+## Ideology and science
+1. [How ideology threatens to corrupt science](https://thecritic.co.uk/how-ideology-threatens-to-corrupt-science/)
+2. [The Ideological Subversion of Biology](https://skepticalinquirer.org/2023/06/the-ideological-subversion-of-biology/)
