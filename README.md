@@ -1,5 +1,5 @@
 # Documentation
-Documentation for various processes in Dr. Marino-Ramirez's NIMHD lab.
+Documentation for various processes in Dr. Marino-Ramirez's lab.
 
 ## Working with UK Biobank data
 1. [Create an account in Biowulf](https://hpc.nih.gov/docs/accounts.html)  
